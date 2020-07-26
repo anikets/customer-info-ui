@@ -50,3 +50,8 @@ export interface GenericAction {
 export interface AddressesAction extends GenericAction {
   customerId: string;
 }
+
+export interface AppState {
+  customer: CustomerState;
+  address: AddressState;
+}

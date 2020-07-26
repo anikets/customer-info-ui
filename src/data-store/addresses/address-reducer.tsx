@@ -10,7 +10,7 @@ export const addressesReducer = (state: AddressState = initialState, action: Gen
   switch(action.type) {
     case Actions[Actions.GET_ADDRESSES]:
       return {
-        ... state,
+        ...state,
         addresses: []
       };
     default:
