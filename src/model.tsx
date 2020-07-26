@@ -1,6 +1,11 @@
 export enum Actions {
-  GET_CUSTOMERS = 'GET_CUSTOMERS',
-  GET_ADDRESSES = 'GET_ADDRESSES',
+  GET_CUSTOMERS_START = 'GET_CUSTOMERS_START',
+  GET_CUSTOMERS_SUCCESS = 'GET_CUSTOMERS_SUCCESS',
+  GET_CUSTOMERS_ERROR = 'GET_CUSTOMERS_SUCCESS',
+
+  GET_ADDRESSES_START = 'GET_ADDRESSES_START',
+  GET_ADDRESSES_SUCCESS = 'GET_ADDRESSES_SUCCESS',
+  GET_ADDRESSES_ERROR = 'GET_ADDRESSES_ERROR',
 }
 
 export enum Endpoints {
@@ -15,9 +20,9 @@ export enum Routes {
 }
 
 export interface Customer {
-  id: string,
-  createdAt: number;
-  name: string;
+  ID: string,
+  CreatedAt: number;
+  Name: string;
 }
 
 export interface CustomerState {
@@ -27,9 +32,9 @@ export interface CustomerState {
 }
 
 export interface Address {
-  id: string;
+  ID: string;
   customerId: string;
-  createdAt: number;
+  CreatedAt: number;
   line1: string;
   line2: string;
   city: string;
@@ -50,6 +55,14 @@ export interface GenericAction {
 
 export interface AddressesAction extends GenericAction {
   customerId: string;
+}
+
+export interface PayloadAction extends GenericAction {
+  payload: [];
+}
+
+export interface ErrorAction extends GenericAction {
+  error: { message: string };
 }
 
 export interface AppState {

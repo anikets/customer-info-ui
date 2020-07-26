@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 import { customerReducer } from "./customers/customer-reducer";
 import { addressesReducer } from "./addresses/address-reducer";
 import { IWindow } from "../model";
@@ -14,5 +15,5 @@ const rootReducer = combineReducers({
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const AppStore = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(logger))
+  composeEnhancers(applyMiddleware(logger, thunk))
 );
