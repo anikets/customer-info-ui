@@ -4,7 +4,7 @@ import { useRouteMatch, useHistory } from 'react-router-dom';
 import { AppState } from '../../../model';
 import { useSelector, useDispatch } from 'react-redux';
 
-const Addresses = (props: any) => {
+const Addresses = () => {
   const { addresses } = useSelector((state: AppState) => state.address);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -16,6 +16,8 @@ const Addresses = (props: any) => {
 
   return (
     <>
+      {/* todo show loading animation while XHR is in progress */}
+      {/* todo show error message if XHR fails */}
       <button onClick={() => history.goBack()}>Back</button>
       <h2>Addresses</h2>
       <p>{JSON.stringify(addresses || '')}</p>

@@ -4,8 +4,9 @@ export enum Actions {
 }
 
 export enum Endpoints {
-  GET_CUSTOMERS = 'https://5f1d868f39d95a00169540f9.mockapi.io/api/v1/customers',
-  GET_ADDRESSES = 'https://5f1d868f39d95a00169540f9.mockapi.io/api/v1/customer/:id',
+  // todo read port from env variable for supporting different envs
+  GET_CUSTOMERS = 'http://localhost:3004/api/v1/customers',
+  GET_ADDRESSES = 'http://localhost:3004/api/v1/customer/:id',
 }
 
 export enum Routes {

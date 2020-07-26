@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Customers = () => {
-  const { customer } = useSelector((state: AppState) => state);
-  const { customers } = customer;
+  const { customers } = useSelector((state: AppState) => state.customer);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCustomers());
@@ -14,6 +13,8 @@ const Customers = () => {
 
   return (
     <>
+      {/* todo show loading animation while XHR is in progress */}
+      {/* todo show error message if XHR fails */}
       <h2>Customers</h2>
       <ul>
         {customers.map((customer: Customer) =>
