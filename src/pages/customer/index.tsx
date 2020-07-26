@@ -1,19 +1,22 @@
 import React, { useEffect } from 'react';
 import { getCustomers } from '../../data-store/customers/customer-actions';
-import { AppState, CustomerState, Customer, Routes } from '../../model';
-import { Link, useRouteMatch } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { AppState, Customer, Routes } from '../../model';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Customers = (props: { getCustomers: Function, customerInfo: CustomerState }) => {
+const Customers = () => {
+  const { customer } = useSelector((state: AppState) => state);
+  const { customers } = customer;
+  const dispatch = useDispatch();
   useEffect(() => {
-    props.getCustomers();
+    dispatch(getCustomers());
   }, []);
 
   return (
     <>
       <h2>Customers</h2>
       <ul>
-        {props.customerInfo?.customers.map((customer: Customer) =>
+        {customers.map((customer: Customer) =>
           <li key={customer.id}>
             {customer.name}
             <Link to={Routes.ADDRESSES.replace(':id', customer.id)}>View Addresses</Link>
@@ -23,18 +26,4 @@ const Customers = (props: { getCustomers: Function, customerInfo: CustomerState 
   );
 };
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    customerInfo: state.customer,
-  };
-};
-
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    getCustomers: () => {
-      dispatch(getCustomers());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Customers);
+export default Customers;

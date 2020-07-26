@@ -1,35 +1,26 @@
 import React, { useEffect } from 'react';
 import { getAddresses } from '../../../data-store/addresses/address-actions';
-import { useRouteMatch } from 'react-router-dom';
-import { AppState, AddressState } from '../../../model';
-import { connect } from 'react-redux';
+import { useRouteMatch, useHistory } from 'react-router-dom';
+import { AppState } from '../../../model';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Addresses = (props: { getAddresses: Function, addressInfo?: AddressState }) => {
+const Addresses = (props: any) => {
+  const { addresses } = useSelector((state: AppState) => state.address);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const match = useRouteMatch();
   const params: any = match.params;
   useEffect(() => {
-    props.getAddresses(params.id);
+    dispatch(getAddresses(params.id));
   }, []);
 
   return (
     <>
+      <button onClick={() => history.goBack()}>Back</button>
       <h2>Addresses</h2>
+      <p>{JSON.stringify(addresses || '')}</p>
     </>
   );
 };
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    addressInfo: state.address,
-  }
-};
-
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    getAddresses: (customerId: string) => {
-      dispatch(getAddresses(customerId));
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Addresses);
+export default Addresses;
