@@ -55,3 +55,8 @@ export interface AppState {
   customer: CustomerState;
   address: AddressState;
 }
+
+export interface IWindow extends Window {
+  __REDUX_DEVTOOLS_EXTENSION__?: Function;
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
+}
