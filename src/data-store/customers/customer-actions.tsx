@@ -28,12 +28,13 @@ export const fetchCustomers = () => {
 
     try {
       const result = await Axios.get(Endpoints.GET_CUSTOMERS);
-      console.info('Fetching customers successful', result);
+      console.info('Fetching customers successful\n', result);
       dispatch(getCustomersSuccess(result.data));
     } catch (e) {
-      console.error('Fetching customers failed', e);
+      // debugger;
+      console.error('Fetching customers failed\n', e.response.status >= 500 ? e.response.data.message : 'Couldn\'t fetch customers!');
       dispatch(getCustomersError({
-        message: e.data
+        message: e.response.status >= 500 ? e.response.data.message : 'Couldn\'t fetch customers!',
       }));
     }
   }

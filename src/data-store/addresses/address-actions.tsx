@@ -33,10 +33,9 @@ export const fetchAddresses = (customerId: string) => {
       dispatch(getAddressesSuccess(result.data));
     } catch (e) {
       console.error('Fetching addresses failed', e);
-      dispatch({
-        type: Actions.GET_ADDRESSES_ERROR,
-        error: e.data,
-      } as ErrorAction);
+      dispatch(getAddressesError({
+        message: e.response.status >= 500 ? e.response.data.message : 'Couldn\'t fetch addresses!',
+      }));
     }
   }
 };
