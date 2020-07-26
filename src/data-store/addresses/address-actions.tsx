@@ -29,12 +29,14 @@ export const fetchAddresses = (customerId: string) => {
 
     try {
       const result = await Axios.get(Endpoints.GET_ADDRESSES.replace(':id', customerId));
-      console.info('Fetching addresses successful', result);
+      console.info('Fetching addresses successful\n', result);
       dispatch(getAddressesSuccess(result.data));
     } catch (e) {
-      console.error('Fetching addresses failed', e);
+      console.error('Fetching addresses failed\n', e);
       dispatch(getAddressesError({
-        message: e.response.status >= 500 ? e.response.data.message : 'Couldn\'t fetch addresses!',
+        message: e && e.response && e.response.status >= 500
+          ? e.response.data.message
+          : 'Couldn\'t fetch addresses!',
       }));
     }
   }

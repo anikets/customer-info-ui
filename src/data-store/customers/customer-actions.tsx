@@ -31,10 +31,11 @@ export const fetchCustomers = () => {
       console.info('Fetching customers successful\n', result);
       dispatch(getCustomersSuccess(result.data));
     } catch (e) {
-      // debugger;
-      console.error('Fetching customers failed\n', e.response.status >= 500 ? e.response.data.message : 'Couldn\'t fetch customers!');
+      console.error('Fetching customers failed\n', e);
       dispatch(getCustomersError({
-        message: e.response.status >= 500 ? e.response.data.message : 'Couldn\'t fetch customers!',
+        message: e && e.response && e.response.status >= 500
+          ? e.response.data.message
+          : 'Couldn\'t fetch customers!',
       }));
     }
   }
