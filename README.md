@@ -1,4 +1,4 @@
-Tested on:
+Developed on:
 Node.js v14.6.0
 mysql  Ver 14.14 Distrib 5.7.27
 
