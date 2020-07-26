@@ -1,6 +1,6 @@
 Developed on:
-Node.js v14.6.0
-mysql  Ver 14.14 Distrib 5.7.27
+* Node.js v14.6.0
+* mysql  Ver 14.14 Distrib 5.7.27
 
 Steps to start frontend:
 * Start backend first; please check readme file of customer-info-backend repo for related info.
